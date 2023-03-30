@@ -1,12 +1,11 @@
 let fs = require("fs");
 
 let generateFeedback = (passed, results) => {
-  const testResults = results
-    .map((item) => {
-      let status = item["status"];
-      let title = item["title"];
+  const testResults = Object.keys(results)
+    .map((key) => {
+      let status = results[key];
       let statusSymbol = status == "passed" ? "✓" : "✗";
-      return `${statusSymbol} ${title}`;
+      return `${statusSymbol} ${key}`;
     })
     .join("\n\n");
 
@@ -41,11 +40,8 @@ const readFile = async (filePath) => {
 readFile("results.json").then((data) => {
   if (data) {
     let results = JSON.parse(data);
-    const passed = results["numFailedTests"] == 0;
-    let feedback = generateFeedback(
-      passed,
-      results["testResults"][0]["assertionResults"]
-    );
+    const passed = results["totals"]["failed"] == 0;
+    let feedback = generateFeedback(passed, results[Object.keys(results)[0]]);
     writeReport({
       version: 0,
       grade: passed ? "accept" : "reject",
