@@ -72,7 +72,7 @@ describe("Level 4 Milestone", () => {
     cy.get(".TaskItem").should("have.length", todoItems.length);
   });
 
-  it("It should be possible to delete tasks", () => {
+  it("It should be possible to delete tasks using `.deleteTaskButton` elements", () => {
     addEntries();
 
     cy.get(".deleteTaskButton").last().click();
