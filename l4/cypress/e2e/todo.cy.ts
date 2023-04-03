@@ -21,7 +21,8 @@ const addEntries = () => {
   todoItems.forEach((item) => {
     cy.get("#todoDueDate").type(`${item.dueDate}`);
     cy.get("#todoTitle").type(`${item.title}`);
-    cy.get("#todoDescription").type(`${item.description}{enter}`);
+    cy.get("#todoDescription").type(`${item.description}`);
+    cy.get('#addTaskButton').click();
   });
 };
 describe("Level 4 Milestone", () => {
@@ -41,12 +42,14 @@ describe("Level 4 Milestone", () => {
       },
     ];
     todoItems.forEach((item) => {
-      cy.get("#todoTitle").type(`${item.title}{enter}`);
+      cy.get("#todoTitle").type(`${item.title}`);
+      cy.get('#addTaskButton').click();
     });
     cy.get("#todoTitle").clear();
     todoItems.forEach((item) => {
       cy.get("#todoDueDate").type(`${item.dueDate}`);
-      cy.get("#todoDescription").type(`${item.description}{enter}`);
+      cy.get("#todoDescription").type(`${item.description}`);
+      cy.get('#addTaskButton').click();
     });
     cy.get(".TaskItem").should("have.length", 0);
   });
