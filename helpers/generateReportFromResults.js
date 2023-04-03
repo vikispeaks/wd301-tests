@@ -38,7 +38,7 @@ const readFile = async (filePath) => {
 };
 
 const resultValues = (results) => {
-  let testFiles = Object.keys(results).slice(0, -1);
+  let testFiles = Object.keys(results).filter((key) => key !== "totals");
   return testFiles.reduce((acc, key) => Object.assign(acc, results[key]), {});
 };
 
