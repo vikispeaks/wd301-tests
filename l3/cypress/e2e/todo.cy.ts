@@ -3,8 +3,8 @@ describe('', () => {
   beforeEach(() => {
     cy.visit(Cypress.env("STUDENT_SUBMISSION_URL"))
   })
-  it('The submit button should have `addTaskButton` as its `id` ', () => {
 
+  it('The submit button should have `addTaskButton` as its `id`', () => {
     cy.get('#addTaskButton').should('exist');
   })
 
@@ -25,6 +25,7 @@ describe('', () => {
     cy.get('.TaskItem')
       .should('have.length', todoItems.length)
   })
+
   it('It should not be possible to add an item without a title or a due date', () => {
     const todoItems = [
       {title: "Sample item 1", description: "item 1 description", dueDate: "2023-01-09"},
