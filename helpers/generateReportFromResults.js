@@ -37,11 +37,16 @@ const readFile = async (filePath) => {
   }
 };
 
+const resultValues = (results) => {
+  let testFiles = Object.keys(results).slice(0, -1);
+  return testFiles.reduce((acc, key) => Object.assign(acc, results[key]), {});
+};
+
 readFile("results.json").then((data) => {
   if (data) {
     let results = JSON.parse(data);
     const passed = results["totals"]["failed"] == 0;
-    let feedback = generateFeedback(passed, results[Object.keys(results)[0]]);
+    let feedback = generateFeedback(passed, resultValues(results));
     writeReport({
       version: 0,
       grade: passed ? "accept" : "reject",
