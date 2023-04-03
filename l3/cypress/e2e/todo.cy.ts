@@ -3,6 +3,11 @@ describe('', () => {
   beforeEach(() => {
     cy.visit(Cypress.env("STUDENT_SUBMISSION_URL"))
   })
+  it('The submit button should have `addTaskButton` as its `id` ', () => {
+
+    cy.get('#addTaskButton').should('exist');
+  })
+
   it('Adding some sample items should result in an equal number of .TaskItem elements', () => {
     const todoItems = [
       {title: "Sample item 1", description: "item 1 description", dueDate: "2023-01-09"},
@@ -13,7 +18,8 @@ describe('', () => {
     todoItems.forEach(item => {
       cy.get('#todoDueDate').type(`${item.dueDate}`)
       cy.get('#todoTitle').type(`${item.title}`)
-      cy.get('#todoDescription').type(`${item.description}{enter}`)
+      cy.get('#todoDescription').type(`${item.description}`)
+      cy.get('#addTaskButton').click();
     })
 
     cy.get('.TaskItem')
@@ -25,14 +31,16 @@ describe('', () => {
     ]
 
     todoItems.forEach(item => {
-      cy.get('#todoTitle').type(`${item.title}{enter}`)
+      cy.get('#todoTitle').type(`${item.title}`)
+      cy.get('#addTaskButton').click();
     })
 
     cy.get('#todoTitle').clear()
 
     todoItems.forEach(item => {
       cy.get('#todoDueDate').type(`${item.dueDate}`)
-      cy.get('#todoDescription').type(`${item.description}{enter}`)
+      cy.get('#todoDescription').type(`${item.description}`)
+      cy.get('#addTaskButton').click();
     })
 
     cy.get('.TaskItem')
