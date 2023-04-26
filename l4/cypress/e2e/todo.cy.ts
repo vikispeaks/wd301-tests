@@ -27,7 +27,7 @@ const addEntries = () => {
   });
 };
 
-describe("Level 4 Milestone", () => {
+describe("", () => {
   beforeEach(() => {
     cy.visit(Cypress.env("STUDENT_SUBMISSION_URL"));
   });
