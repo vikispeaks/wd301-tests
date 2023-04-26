@@ -118,39 +118,39 @@ describe("Level 5 milestone task details Page", () => {
   });
   it("should click and lead to task details page", () => {
     addEntries();
-    cy.get("button").last().click();
-    cy.get("button").last().click();
+    cy.get(".deleteTaskButton").last().click();
+    cy.get(".deleteTaskButton").last().click();
     cy.get(".text-base").click();
     cy.get("h3").should("be.visible");
   });
   it("should click on item 1 and lead to task details page", () => {
     addEntries();
-    cy.get("button").last().click();
-    cy.get("button").last().click();
+    cy.get(".deleteTaskButton").last().click();
+    cy.get(".deleteTaskButton").last().click();
     cy.get(".text-base").should("have.text", "Sample item 1");
   });
   it("should have the right task details", () => {
     addEntries();
-    cy.get("button").last().click();
-    cy.get("button").last().click();
+    cy.get(".deleteTaskButton").last().click();
+    cy.get(".deleteTaskButton").last().click();
     cy.get(".text-base").click();
     cy.get("h3").should("have.text", "Sample item 1");
   });
 });
 
-describe("Validate protected route before signin", () => {
-  it("Redirects to sign-in page when unauthenticated", () => {
+describe("Level 5 milestone should validate protected route", () => {
+  it("while visiting Homepage and redirect to sign-in page when unauthenticated", () => {
     cy.visit(studentSubmissionUrl);
     cy.location("pathname").should("equal", "/signin"); // Verify that we are redirected to the sign-in page
   });
 
-  it("Redirects to sign-in page when unauthenticated", () => {
+  it("while visiting Tasks page and redirect to sign-in page when unauthenticated", () => {
     cy.visit(studentSubmissionUrl + "/tasks");
     cy.location("pathname").should("equal", "/signin"); // Verify that we are redirected to the sign-in page
   });
 });
 
-describe("Validate Protected route after signin", () => {
+describe("Level 5 milestone should validate protected route after signin", () => {
   beforeEach(() => {
     cy.visit(studentSubmissionUrl);
     cy.get("#username").clear();
@@ -160,18 +160,18 @@ describe("Validate Protected route after signin", () => {
     cy.get("button[type='submit']").click();
   });
 
-  it("Redirects to Home page when authenticated", () => {
+  it("and redirect to Home page when authenticated", () => {
     cy.get("nav").should("be.visible");
   });
 
-  it("Redirects to Signin page when clicked on Signout", () => {
+  it("and redirect to Signin page when clicked on Signout", () => {
     cy.visit(studentSubmissionUrl + "/signin");
     cy.visit(studentSubmissionUrl);
     cy.location("pathname").should("equal", "/signin");
   });
 });
 
-describe("Validate Catchall Path", () => {
+describe("Level 5 milestone should validate undefined route", () => {
   beforeEach(() => {
     cy.visit(studentSubmissionUrl);
     cy.get("#username").clear();
@@ -181,12 +181,12 @@ describe("Validate Catchall Path", () => {
     cy.get("button[type='submit']").click();
   });
 
-  it("Redirects to NotFound page on invalid path", () => {
+  it("and redirect to NotFound page on invalid path", () => {
     cy.visit(studentSubmissionUrl + "/test");
     cy.location("pathname").should("equal", "/notfound");
   });
 
-  it("Header not visible in NotFound page", () => {
+  it("and hide the Header in NotFound page", () => {
     cy.visit(studentSubmissionUrl + "/test");
     cy.get("nav").should("have.length", 0);
   });
