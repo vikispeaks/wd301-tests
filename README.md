@@ -8,3 +8,4 @@ This repo contains tests used to verify student submissions on [WD301](https://w
 - [Level 2](https://github.com/pupilfirst/vta-test-scripts/blob/master/19359.yml)
 - [Level 3](https://github.com/pupilfirst/vta-test-scripts/blob/master/19297.yml)
 - [Level 4](https://github.com/pupilfirst/vta-test-scripts/blob/master/19376.yml)
+- [Level 5](https://github.com/pupilfirst/vta-test-scripts/blob/master/19533.yml)
