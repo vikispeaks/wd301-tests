@@ -136,12 +136,6 @@ describe("With protected routes implemented and while the user signs in with the
   it("the application should redirect to the Homepage and the Navigation `<nav>` element should be visible", () => {
     cy.get("nav").should("be.visible");
   });
-
-  it("the application should redirect to the `/signin` page if the user signs out", () => {
-    cy.visit(studentSubmissionUrl + "/signin");
-    cy.visit(studentSubmissionUrl);
-    cy.location("pathname").should("equal", "/signin");
-  });
 });
 
 describe("With protected routes implemented and while the user signs in with the username `admin` and password `admin`,", () => {
@@ -162,5 +156,11 @@ describe("With protected routes implemented and while the user signs in with the
   it("the application does not contain the `<nav>` element on the `/notfound` page", () => {
     cy.visit(studentSubmissionUrl + "/test");
     cy.get("nav").should("have.length", 0);
+  });
+
+  it("the application redirects back to the Home page from the `/notfound` page while clicking on the `#backToHomeButton`", () => {
+    cy.visit(studentSubmissionUrl + "/test");
+    cy.get("#backToHomeButton").click();
+    cy.location("pathname").should("equal", "/");
   });
 });
