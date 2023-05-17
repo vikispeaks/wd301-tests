@@ -5,7 +5,7 @@ const todoItems = [
     title: "Sample item 1",
     description: "item 1 description",
     dueDate: "2023-01-09",
-  }
+  },
 ];
 
 const addEntries = () => {
@@ -22,7 +22,7 @@ if (studentSubmissionUrl.endsWith("/")) {
   studentSubmissionUrl = studentSubmissionUrl.slice(0, -1);
 }
 
-describe("After signing in,", () => {
+describe("After signing in with the username `admin`, and password `admin`,", () => {
   beforeEach(() => {
     cy.visit(studentSubmissionUrl);
     cy.get("#username").clear();
@@ -99,12 +99,14 @@ describe("After signing in and visiting the `/tasks` page,", () => {
     cy.get("button[type='submit']").click();
     cy.visit(studentSubmissionUrl + "/tasks");
   });
-  it("clicking on the task title should navigate and lead to task details page", () => {
+
+  it("clicking on the task title should navigate to task details page", () => {
     addEntries();
     cy.get(".text-base").click();
     cy.get("h3").should("be.visible");
   });
-  it("clicking on the task title should navigate and lead to task details page with the same title rendered in a `<h3>`heading element", () => {
+
+  it("clicking on the task title should navigate to task details page with the same title rendered in a `<h3>` heading element", () => {
     addEntries();
     cy.get(".text-base").click();
     cy.get("h3").should("have.text", "Sample item 1");
@@ -112,18 +114,18 @@ describe("After signing in and visiting the `/tasks` page,", () => {
 });
 
 describe("With protected routes implemented and while the user is not signed in,", () => {
-  it("visiting the Homepage should redirect back to the sign-in page", () => {
+  it("visiting the homepage should redirect back to the `/signin` page", () => {
     cy.visit(studentSubmissionUrl);
-    cy.location("pathname").should("equal", "/signin"); 
+    cy.location("pathname").should("equal", "/signin");
   });
 
-  it("visiting the `/tasks` page should redirect back to the sign-in page", () => {
+  it("visiting the `/tasks` page should redirect back to the `/signin` page", () => {
     cy.visit(studentSubmissionUrl + "/tasks");
     cy.location("pathname").should("equal", "/signin");
   });
 });
 
-describe("With protected routes implemented and while the user signs in with the username `admin` and password `admin`,", () => {
+describe("With protected routes implemented and the user signed in,", () => {
   beforeEach(() => {
     cy.visit(studentSubmissionUrl);
     cy.get("#username").clear();
@@ -133,9 +135,10 @@ describe("With protected routes implemented and while the user signs in with the
     cy.get("button[type='submit']").click();
   });
 
-  it("the application should redirect to the Homepage and the Navigation `<nav>` element should be visible", () => {
+  it("the application should redirect to the homepage and the `<nav>` element should be visible", () => {
     cy.get("nav").should("be.visible");
   });
+<<<<<<< HEAD
 });
 
 describe("With protected routes implemented and while the user signs in with the username `admin` and password `admin`,", () => {
@@ -146,6 +149,13 @@ describe("With protected routes implemented and while the user signs in with the
     cy.get("#password").clear();
     cy.get("#password").type("admin");
     cy.get("button[type='submit']").click();
+=======
+
+  it("the application should redirect to the `/signin` page if the user signs out", () => {
+    cy.visit(studentSubmissionUrl + "/signin");
+    cy.visit(studentSubmissionUrl);
+    cy.location("pathname").should("equal", "/signin");
+>>>>>>> f0c018dfd77087afeee733e74f0ea206dc55bcff
   });
 
   it("the application redirects to the `/notfound` page on visting an invalid path", () => {
