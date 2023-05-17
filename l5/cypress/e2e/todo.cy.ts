@@ -5,7 +5,7 @@ const todoItems = [
     title: "Sample item 1",
     description: "item 1 description",
     dueDate: "2023-01-09",
-  }
+  },
 ];
 
 const addEntries = () => {
@@ -114,7 +114,7 @@ describe("After signing in and visiting the `/tasks` page,", () => {
 describe("With protected routes implemented and while the user is not signed in,", () => {
   it("visiting the Homepage should redirect back to the sign-in page", () => {
     cy.visit(studentSubmissionUrl);
-    cy.location("pathname").should("equal", "/signin"); 
+    cy.location("pathname").should("equal", "/signin");
   });
 
   it("visiting the `/tasks` page should redirect back to the sign-in page", () => {
