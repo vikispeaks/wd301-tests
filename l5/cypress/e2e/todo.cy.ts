@@ -138,7 +138,6 @@ describe("With protected routes implemented and the user signed in,", () => {
   it("the application should redirect to the homepage and the `<nav>` element should be visible", () => {
     cy.get("nav").should("be.visible");
   });
-<<<<<<< HEAD
 });
 
 describe("With protected routes implemented and while the user signs in with the username `admin` and password `admin`,", () => {
@@ -149,13 +148,6 @@ describe("With protected routes implemented and while the user signs in with the
     cy.get("#password").clear();
     cy.get("#password").type("admin");
     cy.get("button[type='submit']").click();
-=======
-
-  it("the application should redirect to the `/signin` page if the user signs out", () => {
-    cy.visit(studentSubmissionUrl + "/signin");
-    cy.visit(studentSubmissionUrl);
-    cy.location("pathname").should("equal", "/signin");
->>>>>>> f0c018dfd77087afeee733e74f0ea206dc55bcff
   });
 
   it("the application redirects to the `/notfound` page on visting an invalid path", () => {
