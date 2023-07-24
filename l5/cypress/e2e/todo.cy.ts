@@ -163,6 +163,6 @@ describe("With protected routes implemented and while the user signs in with the
   it("the application redirects back to the Home page from the `/notfound` page while clicking on the `#backToHomeButton`", () => {
     cy.visit(studentSubmissionUrl + "/test");
     cy.get("#backToHomeButton").click();
-    cy.location("pathname").should("equal", "/");
+    cy.location("pathname").should("equal", "/home");
   });
 });
